@@ -52,7 +52,7 @@ func (s *natsService) Publish(subject string, data interface{}) error {
 }
 
 func (s *natsService) Subscribe() {
-	subjects := []string{"authentication", "asset"}
+	subjects := []string{"authentication", "forgot_password", "asset"}
 
 	for _, subject := range subjects {
 		sub := subject
@@ -61,6 +61,13 @@ func (s *natsService) Subscribe() {
 			switch sub {
 			case "authentication":
 				if err := s.notificationService.SendNotificationAuthentication(m.Data); err != nil {
+					log.Printf("Error processing 'authentication': %v", err)
+				} else {
+					log.Printf("Processed 'authentication' successfully")
+				}
+			case "forgot_password":
+				// Handle 'forgot_password' message
+				if err := s.notificationService.SendNotificationEmail(m.Data); err != nil {
 					log.Printf("Error processing 'authentication': %v", err)
 				} else {
 					log.Printf("Processed 'authentication' successfully")

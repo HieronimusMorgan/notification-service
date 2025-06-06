@@ -64,7 +64,13 @@ func (s *ServerConfig) initRepository() {
 // initServices initializes the application services
 func (s *ServerConfig) initServices() {
 	s.Services = Services{
-		NotificationService: services.NewNotificationService(s.Repository.NotificationRepository, s.Config.FCMFilePath, s.Config.FCMProjectID),
+		NotificationService: services.NewNotificationService(s.Repository.NotificationRepository,
+			s.Config.FCMFilePath,
+			s.Config.FCMProjectID,
+			s.Config.SMTPHost,
+			s.Config.SMTPPort,
+			s.Config.SMTPEmail,
+			s.Config.SMTPPassword),
 	}
 
 }

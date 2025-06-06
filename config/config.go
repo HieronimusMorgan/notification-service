@@ -33,6 +33,10 @@ type Config struct {
 	DBName       string `envconfig:"DB_NAME" default:"notification"`
 	DBSchema     string `envconfig:"DB_SCHEMA" default:"public"`
 	DBSSLMode    string `envconfig:"DB_SSLMODE" default:"disable"`
+	SMTPHost     string `envconfig:"SMTP_HOST" default:"smtp.gmail.com"`
+	SMTPPort     string `envconfig:"SMTP_PORT" default:"587"`
+	SMTPEmail    string `envconfig:"SMTP_EMAIL" default:""`
+	SMTPPassword string `envconfig:"SMTP_PASSWORD" default:""`
 	NatsUrl      string `envconfig:"NATS_URL" default:"nats://localhost:4222"`
 	FCMFilePath  string `envconfig:"FCM_FILE_PATH" default:"my-home-6b368.json"`
 	FCMProjectID string `envconfig:"FCM_PROJECT_ID" default:"my-home-6b368"`
