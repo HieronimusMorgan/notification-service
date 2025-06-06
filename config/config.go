@@ -34,7 +34,7 @@ type Config struct {
 	DBSchema     string `envconfig:"DB_SCHEMA" default:"public"`
 	DBSSLMode    string `envconfig:"DB_SSLMODE" default:"disable"`
 	NatsUrl      string `envconfig:"NATS_URL" default:"nats://localhost:4222"`
-	FCMFilePath  string `envconfig:"FCM_FILE_PATH" default:"my-home-6b368-firebase.json"`
+	FCMFilePath  string `envconfig:"FCM_FILE_PATH" default:"my-home-6b368.json"`
 	FCMProjectID string `envconfig:"FCM_PROJECT_ID" default:"my-home-6b368"`
 }
 
@@ -97,7 +97,7 @@ func InitDatabase(cfg *Config) *gorm.DB {
 		maxRetries := 5
 		for i := 1; i <= maxRetries; i++ {
 			db, err = gorm.Open(postgres.Open(dsn), &gorm.Config{
-				Logger:         logger.Default.LogMode(logger.Info),
+				Logger:         logger.Default.LogMode(logger.Silent),
 				NamingStrategy: schemaNamingStrategy(cfg.DBSchema),
 			})
 			if err == nil {

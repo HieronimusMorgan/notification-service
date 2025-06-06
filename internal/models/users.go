@@ -21,6 +21,7 @@ type Users struct {
 	ProfilePicture *string        `json:"profile_picture,omitempty"`
 	RoleID         uint           `gorm:"not null" json:"role_id,omitempty"`
 	DeviceID       *string        `json:"device_id,omitempty"`
+	DeviceToken    *string        `json:"device_token,omitempty"`
 	CreatedAt      time.Time      `gorm:"autoCreateTime" json:"created_at,omitempty"`
 	CreatedBy      string         `json:"created_by,omitempty"`
 	UpdatedAt      time.Time      `gorm:"autoUpdateTime" json:"updated_at,omitempty"`
@@ -30,7 +31,7 @@ type Users struct {
 }
 
 type TokenDetails struct {
-	AccessToken  string `json:"access_token"`
+	AccessToken  string `json:"token"`
 	RefreshToken string `json:"refresh_token"`
 	AccessUUID   string `json:"access_uuid"`
 	RefreshUUID  string `json:"refresh_uuid"`

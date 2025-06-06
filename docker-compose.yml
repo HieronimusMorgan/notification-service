@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  app:
+    container_name: notification_service
+    build: .
+    ports:
+      - "${APP_PORT}:8083"
+    environment:
+      APP_PORT: ${APP_PORT}
+      JWT_SECRET: ${JWT_SECRET}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      DB_SCHEMA: ${DB_SCHEMA}
+      DB_SSLMODE: ${DB_SSLMODE}
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: ${REDIS_PORT}
+      REDIS_DB: ${REDIS_DB}
+      NATS_URL: ${NATS_URL}
+      FCM_FILE_PATH: ${FCM_FILE_PATH}
+      FCM_PROJECT_ID: ${FCM_PROJECT_ID}
+    restart: always

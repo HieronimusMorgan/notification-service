@@ -45,10 +45,15 @@ func (s *notificationService) SendNotificationAuthentication(data []byte) error 
 		return fmt.Errorf("unmarshal token details: %w", err)
 	}
 
+	log.Printf("payloadJSON message : %s", payloadJSON)
+	log.Printf("tokenDetails message : %s", tokenDetails)
+
 	payload := map[string]string{
+		"type":          "system",
 		"access_token":  tokenDetails.AccessToken,
 		"refresh_token": tokenDetails.RefreshToken,
 	}
+	log.Printf("payload message : %s", payload)
 
 	now := time.Now()
 	notifReq := &models.NotificationRequest{
